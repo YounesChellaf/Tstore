@@ -32,3 +32,10 @@ Route::get('/cart', function () {
 Route::get('/checkout', function () {
     return view('layouts.checkout');
 });
+Route::get('/blog-details', function () {
+    return view('layouts.blog-details');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

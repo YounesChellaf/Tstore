@@ -27,185 +27,20 @@
                     </div>
                     <div class="category-menu-list">
                         <ul>
-                            <li><a href="#"><img alt="" src="images/icons/thum2.png"> Women’s Clothing <i class="zmdi zmdi-chevron-right"></i></a>
+                            @foreach(\App\Category::all() as $category)
+                            <li><a href="#"><img alt="" src="images/icons/thum2.png">{{$category->name}} <i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
+                                    @foreach(\App\SubCategory::all() as $sub_category)
                                     <div class="category-part-1 category-common mb--30">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
+                                        <h4 class="categories-subtitle"> {{$sub_category->name}}</h4>
                                         <ul>
                                             <li><a href="#"> Men’s Clothing</a></li>
                                         </ul>
                                     </div>
-                                    <div class="category-part-2 category-common mb--30">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-3 category-common">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-4 category-common">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                        </ul>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </li>
-                            <li><a href="#"><img alt="" src="images/icons/thum3.png"> Man Fashion <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-part-1 category-common2 mb--30">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-2 category-common2 mb--30">
-                                        <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="category-part-3 category-common2 mb--30">
-                                        <h4 class="categories-subtitle">dress</h4>
-                                        <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
-                                            <li><a href="#"> Computer & Office</a></li>
-                                    </div>
-                                    <div class="mega-banner-img">
-                                        <a href="single-product.html">
-                                            <img src="images/feature-img/5.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#"><img alt="" src="images/icons/thum4.png"> Computer & Office <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-menu-dropdown-top">
-                                        <div class="category-part-1 category-common2 mb--30">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                        </div>
-                                        <div class="category-part-2 category-common2 mb--30">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="category-part-3 category-common2 mb--30">
-                                            <h4 class="categories-subtitle">Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="category-menu-dropdown-bottom">
-                                        <div class="single-category-brand">
-                                            <a href="#"><img src="images/brand/6.png" alt=""></a>
-                                        </div>
-                                        <div class="single-category-brand">
-                                            <a href="#"><img src="images/brand/7.png" alt=""></a>
-                                        </div>
-                                        <div class="single-category-brand">
-                                            <a href="#"><img src="images/brand/8.png" alt=""></a>
-                                        </div>
-                                        <div class="single-category-brand">
-                                            <a href="#"><img src="images/brand/9.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#"><img alt="" src="images/icons/thum5.png"> Jewelry & Watches <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-menu-dropdown-left">
-                                        <div class="category-part-1 category-common mb--30">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                                <li><a href="#"> Jewelry & Watches</a></li>
-                                                <li><a href="#"> Bags & Shoes</a></li>
-                                                <li><a href="#"> Phones & Accessories</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="category-part-2 category-common mb--30">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                                <li><a href="#"> Jewelry & Watches</a></li>
-                                                <li><a href="#"> Bags & Shoes</a></li>
-                                                <li><a href="#"> Phones & Accessories</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="category-part-3 category-common">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="category-part-4 category-common">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="category-menu-dropdown-right">
-                                        <div class="menu-right-img">
-                                            <a href="#"><img src="images/feature-img/2.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#"><img alt="" src="images/icons/thum6.png"> Men’s Clothing <i class="zmdi zmdi-chevron-right"></i></a>
-                                <div class="category-menu-dropdown">
-                                    <div class="category-menu-dropdown-left">
-                                        <div class="category-part-1 category-common">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                                <li><a href="#"> Jewelry & Watches</a></li>
-                                                <li><a href="#"> Bags & Shoes</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="category-part-2 category-common">
-                                            <h4 class="categories-subtitle"> Jewelry & Watches</h4>
-                                            <ul>
-                                                <li><a href="#"> Men’s Clothing</a></li>
-                                                <li><a href="#"> Computer & Office</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="category-menu-dropdown-right">
-                                        <div class="menu-right-img">
-                                            <a href="#"><img src="images/feature-img/1.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#"><img alt="" src="images/icons/thum7.png"> Bags & Shoes</a></li>
-                            <li><a href="#"><img alt="" src="images/icons/thum8.png"> Toys & Kids & Baby</a></li>
-                            <li><a href="#"><img alt="" src="images/icons/thum9.png">  Automobiles </a></li>
-                            <li><a href="#"><img alt="" src="images/icons/thum10.png"> Jewelry & Watches</a></li>
-                            <li><a href="#"><img alt="" src="images/icons/thum2.png"> Consumer Electronics</a></li>
-                            <li><a href="#"><img alt="" src="images/icons/thum3.png"> all Accessories</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -553,13 +388,14 @@
             </div>
             <div class="row">
                 <div class="blog__wrap clearfix mt--60 xmt-30">
+                    @foreach( \App\Blog::all() as $blog)
                     <!-- Start Single Blog -->
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                         <div class="blog foo">
                             <div class="blog__inner">
                                 <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src={{asset('assets/img/products/product1.jpg')}} alt="blog images">
+                                    <a href="/blog-details/{{$blog->id}}">
+                                        <img src={{$blog->blog_image}} alt="blog images">
                                     </a>
                                     <div class="blog__post__time">
                                         <div class="post__time--inner">
@@ -570,13 +406,13 @@
                                 </div>
                                 <div class="blog__hover__info">
                                     <div class="blog__hover__action">
-                                        <p class="blog__des"><a href="blog-details.html">Lorem ipsum dolor sit consectetu.</a></p>
+                                        <p class="blog__des"><a href="/blog-details/{{$blog->id}}">{{$blog->title}}</a></p>
                                         <ul class="bl__meta">
-                                            <li>By :<a href="#">Admin</a></li>
+                                            <li>By :<a href="#">{{$blog->writer}}</a></li>
                                             <li>Product</li>
                                         </ul>
                                         <div class="blog__btn">
-                                            <a class="read__more__btn" href="blog-details.html">read more</a>
+                                            <a class="read__more__btn" href="/blog-details">read more</a>
                                         </div>
                                     </div>
                                 </div>
@@ -584,68 +420,7 @@
                         </div>
                     </div>
                     <!-- End Single Blog -->
-                    <!-- Start Single Blog -->
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                        <div class="blog foo">
-                            <div class="blog__inner">
-                                <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src={{asset('assets/img/products/product2.jpg')}} alt="blog images">
-                                    </a>
-                                    <div class="blog__post__time">
-                                        <div class="post__time--inner">
-                                            <span class="date">14</span>
-                                            <span class="month">sep</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="blog__hover__info">
-                                    <div class="blog__hover__action">
-                                        <p class="blog__des"><a href="blog-details.html">Lorem ipsum dolor sit consectetu.</a></p>
-                                        <ul class="bl__meta">
-                                            <li>By :<a href="#">Admin</a></li>
-                                            <li>Product</li>
-                                        </ul>
-                                        <div class="blog__btn">
-                                            <a class="read__more__btn" href="blog-details.html">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Blog -->
-                    <!-- Start Single Blog -->
-                    <div class="col-md-4 col-lg-4 hidden-sm col-xs-12">
-                        <div class="blog foo">
-                            <div class="blog__inner">
-                                <div class="blog__thumb">
-                                    <a href="blog-details.html">
-                                        <img src={{asset('assets/img/products/product3.jpg')}} alt="blog images">
-                                    </a>
-                                    <div class="blog__post__time">
-                                        <div class="post__time--inner">
-                                            <span class="date">14</span>
-                                            <span class="month">sep</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="blog__hover__info">
-                                    <div class="blog__hover__action">
-                                        <p class="blog__des"><a href="blog-details.html">Lorem ipsum dolor sit consectetu.</a></p>
-                                        <ul class="bl__meta">
-                                            <li>By :<a href="#">Admin</a></li>
-                                            <li>Product</li>
-                                        </ul>
-                                        <div class="blog__btn">
-                                            <a class="read__more__btn" href="blog-details.html">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Blog -->
+                    @endforeach
                 </div>
             </div>
         </div>
