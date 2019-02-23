@@ -4,44 +4,30 @@
     <div class="container">
         <div class="row">
             <!-- Start Left Feature -->
-            <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style">
-                <!-- Start Slider Area -->
-                <div class="slider__container slider--one">
-                    <div class="slider__activation__wrap owl-carousel owl-theme">
-                        <!-- Start Single Slide -->
-                        <div class="slide slider__full--screen slider-height-inherit slider-text-right" style="background: rgba(0, 0, 0, 0) url({{asset('assets/img/home.jpg')}}) no-repeat scroll center center / cover ;">
-                            <div class="container">
-                                <div class="row">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Slide -->
-                    </div>
-                </div>
-                <!-- Start Slider Area -->
-            </div>
             <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
                 <div class="categories-menu mrg-xs">
                     <div class="category-heading">
                         <h3> Browse Categories</h3>
                     </div>
                     <div class="category-menu-list">
+                        @foreach(App\SuperCategory::take(10)->get() as $super_category)
                         <ul>
-                            @foreach(\App\Category::all() as $category)
-                            <li><a href="#"><img alt="" src="images/icons/thum2.png">{{$category->name}} <i class="zmdi zmdi-chevron-right"></i></a>
+                            <li><a href="#"><img alt="" src="images/icons/thum2.png">{{$super_category->name}}<i class="zmdi zmdi-chevron-right"></i></a>
                                 <div class="category-menu-dropdown">
-                                    @foreach(\App\SubCategory::all() as $sub_category)
                                     <div class="category-part-1 category-common mb--30">
-                                        <h4 class="categories-subtitle"> {{$sub_category->name}}</h4>
+                                        <h4 class="categories-subtitle">{{$super_category->name}} Sub categories</h4>
+                                        @foreach(App\Category::take(12)->get() as $category)
+                                            @if($category->super_category_id == $super_category->id)
                                         <ul>
-                                            <li><a href="#"> Men’s Clothing</a></li>
+                                            <li><a href="/category/{{$category->id}}">{{$category->name}}</a></li>
                                         </ul>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
                             </li>
-                            @endforeach
                         </ul>
+                            @endforeach
                     </div>
                 </div>
             </div>
@@ -57,12 +43,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="filter__menu__container">
-                            <div class="product__menu">
+                            <div class="product__menu col-md-8">
                                 <button data-filter="*"  class="is-checked">All</button>
-                                <button data-filter=".cat--1">Furnitures</button>
-                                <button data-filter=".cat--2">Bags</button>
-                                <button data-filter=".cat--3">Decoration</button>
-                                <button data-filter=".cat--4">Accessories</button>
+                                <button data-filter=".cat--1">Promotion</button>
                             </div>
                             <div class="filter__box">
                                 <a class="filter__menu" href="#">filter</a>
@@ -81,57 +64,35 @@
                                 <!-- Start Single Content -->
                                 <div class="fiter__content__inner">
                                     <div class="single__filter">
-                                        <h2>Sort By</h2>
-                                        <ul class="filter__list">
-                                            <li><a href="#default">Default</a></li>
-                                            <li><a href="#accessories">Accessories</a></li>
-                                            <li><a href="#bags">Bags</a></li>
-                                            <li><a href="#chair">Chair</a></li>
-                                            <li><a href="#decoration">Decoration</a></li>
-                                            <li><a href="#fashion">Fashion</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="single__filter">
-                                        <h2>Size</h2>
-                                        <ul class="filter__list">
-                                            <li><a href="#xxl">XXL</a></li>
-                                            <li><a href="#xl">XL</a></li>
-                                            <li><a href="#x">X</a></li>
-                                            <li><a href="#l">L</a></li>
-                                            <li><a href="#m">M</a></li>
-                                            <li><a href="#s">S</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="single__filter">
-                                        <h2>Tags</h2>
-                                        <ul class="filter__list">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Accessories</a></li>
-                                            <li><a href="#">Bags</a></li>
-                                            <li><a href="#">Chair</a></li>
-                                            <li><a href="#">Decoration</a></li>
-                                            <li><a href="#">Fashion</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="single__filter">
                                         <h2>Price</h2>
                                         <ul class="filter__list">
-                                            <li><a href="#">$0.00 - $50.00</a></li>
-                                            <li><a href="#">$50.00 - $100.00</a></li>
-                                            <li><a href="#">$100.00 - $150.00</a></li>
-                                            <li><a href="#">$150.00 - $200.00</a></li>
-                                            <li><a href="#">$300.00 - $500.00</a></li>
-                                            <li><a href="#">$500.00 - $700.00</a></li>
+                                            <li><a href="filter-price-one">$0.00 - $50.00</a></li>
+                                            <li><a href="filter-price-two">$50.00 - $200.00</a></li>
+                                            <li><a href="filter-price-three">$200.00 - $500.00</a></li>
+                                            <li><a href="filter-price-four">$500.00 - $700.00</a></li>
                                         </ul>
                                     </div>
                                     <div class="single__filter">
-                                        <h2>Color</h2>
-                                        <ul class="filter__list sidebar__list">
-                                            <li class="black"><a href="#"><i class="zmdi zmdi-circle"></i>Black</a></li>
-                                            <li class="blue"><a href="#"><i class="zmdi zmdi-circle"></i>Blue</a></li>
-                                            <li class="brown"><a href="#"><i class="zmdi zmdi-circle"></i>Brown</a></li>
-                                            <li class="red"><a href="#"><i class="zmdi zmdi-circle"></i>Red</a></li>
-                                            <li class="orange"><a href="#"><i class="zmdi zmdi-circle"></i>Orange</a></li>
+                                        <h2>Product State</h2>
+                                        <ul class="filter__list">
+                                            <li><a href="/new-products">New</a></li>
+                                            <li><a href="/used-products">Used</a></li>
+                                            <li><a href="/selling-products">For Selling</a></li>
+                                            <li><a href="/exchange-products">Exchange</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single__filter">
+                                        <h2>Delivery</h2>
+                                        <ul class="filter__list">
+                                            <li><a href="/express-delivering">Express</a></li>
+                                            <li><a href="/normal-delivering">Normal</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single__filter">
+                                        <h2>Payment</h2>
+                                        <ul class="filter__list">
+                                            <li><a href="cash-payment">Cash</a></li>
+                                            <li><a href="e-payment">E-payment</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -144,8 +105,10 @@
                 <!-- End Product MEnu -->
                 <div class="row">
                     <div class="product__list another-product-style">
+                        @foreach($Product as $product)
                         <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
+                            @if($product->promotion == null)
+                                <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12">
                             <div class="product foo">
                                 <div class="product__inner">
                                     <div class="pro__thumb">
@@ -155,218 +118,56 @@
                                     </div>
                                     <div class="product__hover__info">
                                         <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
+                                            <li><a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
                                             <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
                                             <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="product__details">
-                                    <h2><a href="/product-details">Simple Black Clock</a></h2>
+                                    <h2><a href="/product-details/{{$product->id}}">{{$product->name}}</a></h2>
                                     <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
+                                        <li class="new__price">${{$product->price}}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                            @else
+                                <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
+                                    <div class="product foo">
+                                        <div class="product__inner">
+                                            <div class="pro__thumb">
+                                                <a href="#">
+                                                    <img src="{{asset('assets/img/products/product1.jpg')}}" alt="product images">
+                                                </a>
+                                            </div>
+                                            <div class="product__hover__info">
+                                                <ul class="product__action">
+                                                    <li><a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
+                                                    <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
+                                                    <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product__details">
+                                            <h2><a href="/product-details/{{$product->id}}">{{$product->name}}</a></h2>
+                                            <ul class="product__price">
+                                                <li class="old__price">${{$product->price}}</li>
+                                                <li class="new__price">${{$product->price - $product->price*$product->promotion/100}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product2.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">BO&Play Wireless Speaker</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 cat--2">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product3.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">Brone Candle</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 cat--4">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product4.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">Brone Lamp Glasses</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product1.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">Simple Black Clock</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product2.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">BO&Play Wireless Speaker</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 cat--2">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product3.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">Brone Candle</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="col-md-3 single__pro col-lg-3 col-sm-4 col-xs-12 cat--4">
-                            <div class="product foo">
-                                <div class="product__inner">
-                                    <div class="pro__thumb">
-                                        <a href="#">
-                                            <img src="{{asset('assets/img/products/product4.jpg')}}" alt="product images">
-                                        </a>
-                                    </div>
-                                    <div class="product__hover__info">
-                                        <ul class="product__action">
-                                            <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                            <li><a title="Wishlist" href="/wishlist"><span class="ti-heart"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product__details">
-                                    <h2><a href="/product-details">Brone Lamp Glasses</a></h2>
-                                    <ul class="product__price">
-                                        <li class="old__price">$16.00</li>
-                                        <li class="new__price">$10.00</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
+                        @endforeach
                     </div>
                 </div>
                 <!-- Start Load More BTn -->
                 <div class="row mt--60">
                     <div class="col-md-12">
                         <div class="htc__loadmore__btn">
-                            <a href="#">load more</a>
+                            <a href="/all-products">load all</a>
                         </div>
                     </div>
                 </div>
@@ -388,39 +189,38 @@
             </div>
             <div class="row">
                 <div class="blog__wrap clearfix mt--60 xmt-30">
-                    @foreach( \App\Blog::all() as $blog)
                     <!-- Start Single Blog -->
+                    @foreach(App\Blog::orderBy('created_at','desc')->take(3)->get() as $blog)
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                         <div class="blog foo">
                             <div class="blog__inner">
                                 <div class="blog__thumb">
-                                    <a href="/blog-details/{{$blog->id}}">
-                                        <img src={{$blog->blog_image}} alt="blog images">
+                                    <a href="blog-details/{{$blog->id}}">
+                                        <img src="storage/{{$blog->image}}" alt="blog images">
                                     </a>
                                     <div class="blog__post__time">
                                         <div class="post__time--inner">
-                                            <span class="date">14</span>
-                                            <span class="month">sep</span>
+                                            <span class="date">{{$blog->created_at->format('d')}}</span>
+                                            <span class="month">{{$blog->created_at->format('M')}}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="blog__hover__info">
                                     <div class="blog__hover__action">
-                                        <p class="blog__des"><a href="/blog-details/{{$blog->id}}">{{$blog->title}}</a></p>
+                                        <p class="blog__des"><a href="blog-details/{{$blog->id}}">{{$blog->title}}</a></p>
                                         <ul class="bl__meta">
-                                            <li>By :<a href="#">{{$blog->writer}}</a></li>
+                                            <li>By :<a href="#">Admin</a></li>
                                             <li>Product</li>
                                         </ul>
                                         <div class="blog__btn">
-                                            <a class="read__more__btn" href="/blog-details">read more</a>
+                                            <a class="read__more__btn" href="blog-details/{{$blog->id}}">read more</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Blog -->
-                    @endforeach
+                        @endforeach
                 </div>
             </div>
         </div>

@@ -30,14 +30,14 @@
                             <!--Start Blog Thumb -->
                             <div class="blog-details-thumb-wrap">
                                 <div class="blog-details-thumb">
-                                    <img src="{{asset('assets/img/products/product1.jpg')}}" alt="blog images">
+                                    <img src="{{asset("storage/$blog->image")}}" alt="blog images">
                                 </div>
                                 <div class="upcoming-date">
-                                    14<span class="upc-mth">Sep,2017</span>
+                                    {{$blog->created_at->format('d')}}<span class="upc-mth"> {{$blog->created_at->format('M Y')}}</span>
                                 </div>
                             </div>
                             <!--End Blog Thumb -->
-                            <h2>It is a long established fact that a reader will</h2>
+                            <h2>{{$blog->title}}</h2>
                             <div class="blog-admin-and-comment">
                                 <p>BY : <a href="#">ADMIN</a></p>
                                 <p class="separator">|</p>
@@ -45,26 +45,12 @@
                             </div>
                             <!-- Start Blog Pra -->
                             <div class="blog-details-pra">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore d aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-
-                                <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore d aliqua. Ut enim ad minim veniam, </blockquote>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dol orea magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit</p>
+                            <p>{{$blog->blog_details}}</p>
                             </div>
                             <!-- End Blog Pra -->
                             <!-- Start Blog Tags -->
                             <div class="postandshare">
-                                <div class="post">
-                                    <p>TAGS :</p>
-                                </div>
                                 <div class="blog-social-icon">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                             <!-- End Blog Tags -->
@@ -151,93 +137,44 @@
                 </div>
                 <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 smt-30 xmt-40">
                     <div class="blod-details-right-sidebar">
-                        <div class="category-search-area">
-                            <input placeholder="Search......" type="text">
-                            <a class="srch-btn" href="#"><i class="zmdi zmdi-search"></i></a>
-                        </div>
                         <!-- Start Category Area -->
                         <div class="our-category-area mt--60">
                             <h2 class="section-title-2">CATEGORY</h2>
                             <ul class="categore-menu">
-                                <li><a href="#"><i class="zmdi zmdi-caret-right"></i>BLOG <span>20</span></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-caret-right"></i>business <span>40</span></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-caret-right"></i>DESIGN <span>60</span></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-caret-right"></i>BRANDING <span>70</span></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-caret-right"></i>ANTHONY <span>80</span></a></li>
+                                @foreach(App\SuperCategory::all() as $super_category)
+                                    {{--@foreach(\App\Blog::all()->where('super_category_id',$super_category->id) as $nb_blog)--}}
+                                {{--<li><a href="#"><i class="zmdi zmdi-caret-right"></i>{{$super_category->name}}<span>{{$nb_blog}}</span></a></li>--}}
+                                   {{--@endforeach--}}
+                                @endforeach
                             </ul>
                         </div>
                         <!-- End Category Area -->
                         <!-- Start Letaest Blog Area -->
                         <div class="our-recent-post mt--60">
                             <h2 class="section-title-2">LATEST POST</h2>
+                            @foreach(App\Blog::orderBy('created_at','desc')->take(5)->get() as $blog)
                             <div class="our-recent-post-wrap">
                                 <!-- Start Single Post -->
                                 <div class="single-recent-post">
                                     <div class="recent-thumb">
-                                        <a href="blog-details.html"><img src="images/blog/sm-img/1.jpg" alt="post images"></a>
+                                        <a href="/blog-details/{{$blog->id}}"><img src="{{asset("storage/$blog->image")}}" alt="post images"></a>
                                     </div>
                                     <div class="recent-details">
                                         <div class="recent-post-dtl">
-                                            <h6><a href="blog-details.html">Lorem ipsum dolor sit amet, consectetu adipisicing elit, sed do.</a></h6>
+                                            <h6><a href="/blog-details/{{$blog->id}}">{{$blog->title}}</a></h6>
                                         </div>
                                         <div class="recent-post-time">
-                                            <p>14 SEP 2017</p>
+                                            <p>{{$blog->created_at->format('d M Y')}}</p>
                                             <p class="separator">|</p>
-                                            <p>5 : 00 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                                <!-- Start Single Post -->
-                                <div class="single-recent-post">
-                                    <div class="recent-thumb">
-                                        <a href="blog-details.html"><img src="images/blog/sm-img/2.jpg" alt="post images"></a>
-                                    </div>
-                                    <div class="recent-details">
-                                        <div class="recent-post-dtl">
-                                            <h6><a href="blog-details.html">Lorem ipsum dolor sit amet, consectetu adipisicing elit, sed do.</a></h6>
-                                        </div>
-                                        <div class="recent-post-time">
-                                            <p>14 SEP 2017</p>
-                                            <p class="separator">|</p>
-                                            <p>5 : 00 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Post -->
-                                <!-- Start Single Post -->
-                                <div class="single-recent-post">
-                                    <div class="recent-thumb">
-                                        <a href="blog-details.html"><img src="images/blog/sm-img/3.jpg" alt="post images"></a>
-                                    </div>
-                                    <div class="recent-details">
-                                        <div class="recent-post-dtl">
-                                            <h6><a href="blog-details.html">Lorem ipsum dolor sit amet, consectetu adipisicing elit, sed do.</a></h6>
-                                        </div>
-                                        <div class="recent-post-time">
-                                            <p>14 SEP 2017</p>
-                                            <p class="separator">|</p>
-                                            <p>5 : 00 PM</p>
+                                            <p>{{$blog->created_at->format('h:i')}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- End Single Post -->
                             </div>
+                                @endforeach
                         </div>
                         <!-- End Letaest Blog Area -->
-                        <!-- Start Tag -->
-                        <div class="our-blog-tag">
-                            <h2 class="section-title-2">TAGS</h2>
-                            <ul class="tag-menu mt-40">
-                                <li><a href="#">Planning</a></li>
-                                <li><a href="#">Consulting</a></li>
-                                <li><a href="#">Investment</a></li>
-                                <li><a href="#">Investment</a></li>
-                                <li><a href="#">planning</a></li>
-                                <li><a href="#">Management</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Tag -->
                     </div>
                 </div>
             </div>

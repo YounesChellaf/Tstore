@@ -1,6 +1,8 @@
 <!doctype html>
+
 <html class="no-js" lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Tstore</title>
@@ -26,7 +28,6 @@
     <!-- Modernizr JS -->
     <script src={{asset('assets/js/vendor/modernizr-2.8.3.min.js')}}></script>
 </head>
-
 <body>
 <!-- Body main wrapper start -->
 <div class="wrapper fixed__footer">
@@ -38,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img src="{{asset('assets/img/logo.png')}}" alt="logo" style="padding-left:10%;width: 100px;">
                             </a>
                         </div>
@@ -48,16 +49,12 @@
                         <nav class="mainmenu__nav hidden-xs hidden-sm">
                             <ul class="main__menu">
                                 <li class="drop"><a href="/">Home</a></li>
-                                <li class="drop"><a href="portfolio-card-box-2.html">portfolio</a>
-                                    <ul class="dropdown">
-                                        <li><a href="portfolio-card-box-2.html">portfolio</a></li>
-                                        <li><a href="single-portfolio.html">Single portfolio</a></li>
-                                    </ul>
-                                </li>
-                                <li class="drop"><a href="blog.html">Blog</a>
-                                    <ul class="dropdown">
-                                        <li><a href="blog.html">blog 3 column</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
+                                <li class="drop"><a href="/about">About Us</a></li>
+                                <li class="drop"><a href="">Blog</a>
+                                    <ul class="dropdown col-md-6">
+                                        @foreach(App\Blog::all() as $blog)
+                                        <li><a href="/blog-details/{{$blog->id}}">Blog {{$blog->id}} :  {{$blog->title}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li class="drop"><a href="shop.html">Shop</a>
@@ -91,23 +88,7 @@
                                         <!-- End Single Mega MEnu -->
                                     </ul>
                                 </li>
-                                <li class="drop"><a href="#">pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="about.html">about</a></li>
-                                        <li><a href="#">testimonials <span><i class="zmdi zmdi-chevron-right"></i></span></a>
-                                            <ul class="lavel-dropdown">
-                                                <li><a href="customer-review.html">customer review</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="shop.html">shop</a></li>
-                                        <li><a href="shop-sidebar.html">shop sidebar</a></li>
-                                        <li><a href="product-details.html">product details</a></li>
-                                        <li><a href="cart.html">cart</a></li>
-                                        <li><a href="wishlist.html">wishlist</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="team.html">team</a></li>
-                                        <li><a href="/login-register">login & register</a></li>
-                                    </ul>
+                                <li class="drop"><a href="/wishlist">wishlist</a>
                                 </li>
                                 <li><a href="/contact">contact</a></li>
                             </ul>
@@ -116,21 +97,17 @@
                             <nav id="mobile_dropdown">
                                 <ul>
                                     <li><a href="/">Home</a></li>
-                                    <li><a href="#">portfolio</a>
-                                        <ul>
-                                            <li><a href="portfolio-card-box-2.html">portfolio</a></li>
-                                            <li><a href="single-portfolio.html">Single portfolio</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">blog 3 column</a></li>
-                                            <li><a href="blog-details.html">Blog details</a></li>
+                                    <li><a href="about">About Us</a></li>
+                                    <li><a href="/">blog</a>
+                                        <ul class="dropdown">
+                                            @foreach(App\Blog::all() as $blog)
+                                                <li><a href="blog-details/{{$blog->id}}">{{$blog->title}}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li><a href="#">pages</a>
                                         <ul>
-                                            <li><a href="about.html">about</a></li>
+                                            <li><a href="about">about</a></li>
                                             <li><a href="customer-review.html">customer review</a></li>
                                             <li><a href="shop.html">shop</a></li>
                                             <li><a href="shop-sidebar.html">shop sidebar</a></li>
@@ -139,7 +116,7 @@
                                             <li><a href="wishlist.html">wishlist</a></li>
                                             <li><a href="checkout.html">checkout</a></li>
                                             <li><a href="team.html">team</a></li>
-                                            <li><a href="/login-register">login & register</a></li>
+                                            <li><a href="/login">login & register</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">contact</a></li>
@@ -151,7 +128,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-3">
                         <ul class="menu-extra">
                             <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
-                            <li><a href="/login-register"><span class="ti-user"></span></a></li>
+                            <li><a href="/login"><span class="ti-user"></span></a></li>
                             <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
                             <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
                         </ul>
@@ -195,21 +172,11 @@
                 <div class="off__contact">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="images/logo/logo.png" alt="logo">
+                            <img src="{{asset("assets/img/logo.png")}}" alt="logo">
                         </a>
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetu adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
                 </div>
-                <ul class="sidebar__thumd">
-                    <li><a href="#"><img src="images/sidebar-img/1.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/2.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/3.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/4.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/5.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/6.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/7.jpg" alt="sidebar images"></a></li>
-                    <li><a href="#"><img src="images/sidebar-img/8.jpg" alt="sidebar images"></a></li>
-                </ul>
                 <div class="offset__widget">
                     <div class="offset__single">
                         <h4 class="offset__title">Language</h4>
@@ -311,13 +278,14 @@
                                 </a>
                             </div>
                             <div class="footer-address">
+                                @foreach(\App\Info::orderBy('created_at','desc')->take(1)->get() as $info)
                                 <ul>
                                     <li>
                                         <div class="address-icon">
                                             <i class="zmdi zmdi-pin"></i>
                                         </div>
                                         <div class="address-text">
-                                            <p>194 Main Rd T, FS Rayed <br> VIC 3057, USA</p>
+                                            <p>{{$info->location}}</p>
                                         </div>
                                     </li>
                                     <li>
@@ -325,7 +293,7 @@
                                             <i class="zmdi zmdi-email"></i>
                                         </div>
                                         <div class="address-text">
-                                            <a href="#"> info@example.com</a>
+                                            <a href="#">{{$info->phone_number}}</a>
                                         </div>
                                     </li>
                                     <li>
@@ -333,17 +301,17 @@
                                             <i class="zmdi zmdi-phone-in-talk"></i>
                                         </div>
                                         <div class="address-text">
-                                            <p>+012 345 678 102 </p>
+                                            <p>{{$info->mail_address}}</p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <ul class="social__icon">
-                                <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-instagram"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+                                <li><a href="/{{$info->twitter_address}}"><i class="zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="/{{$info->instgram_address}}"><i class="zmdi zmdi-instagram"></i></a></li>
+                                <li><a href="/{{$info->facebook_address}}"><i class="zmdi zmdi-facebook"></i></a></li>
                             </ul>
+                            @endforeach
                         </div>
                     </div>
                     <!-- End Single Footer Widget -->
@@ -352,12 +320,9 @@
                         <div class="ft__widget">
                             <h2 class="ft__title">Categories</h2>
                             <ul class="footer-categories">
-                                <li><a href="shop-sidebar.html">Men</a></li>
-                                <li><a href="shop-sidebar.html">Women</a></li>
-                                <li><a href="shop-sidebar.html">Accessories</a></li>
-                                <li><a href="shop-sidebar.html">Shoes</a></li>
-                                <li><a href="shop-sidebar.html">Dress</a></li>
-                                <li><a href="shop-sidebar.html">Denim</a></li>
+                                @foreach(App\SuperCategory::take(6)->get() as $super_category)
+                                <li><a href="shop-sidebar.html">{{$super_category->name}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -366,8 +331,8 @@
                         <div class="ft__widget">
                             <h2 class="ft__title">Infomation</h2>
                             <ul class="footer-categories">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about">About Us</a></li>
+                                <li><a href="contact">Contact Us</a></li>
                                 <li><a href="#">Terms & Conditions</a></li>
                                 <li><a href="#">Returns & Exchanges</a></li>
                                 <li><a href="#">Shipping & Delivery</a></li>
@@ -409,12 +374,11 @@
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="copyright__inner">
                             <div class="copyright">
-                                <p>© 2019 <a href="https://github.com/YounesChellaf/">the genius</a>
+                                <p>© 2019 <a href="https://github.com/YounesChellaf/">Younes Chellaf</a>
                                     All Right Reserved.</p>
                             </div>
                             <ul class="footer__menu">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="shop.html">Product</a></li>
                                 <li><a href="/contact">Contact Us</a></li>
                             </ul>
                         </div>
@@ -428,8 +392,9 @@
 </div>
 <!-- QUICKVIEW PRODUCT -->
 <div id="quickview-wrapper">
+         @foreach(App\Product::all() as $product)
     <!-- Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
         <div class="modal-dialog modal__container" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -445,7 +410,7 @@
                         </div>
                         <!-- end product images -->
                         <div class="product-info">
-                            <h1>Simple Fabric Bags</h1>
+                            <h1>{{$product->name}}</h1>
                             <div class="rating__and__review">
                                 <ul class="rating">
                                     <li><span class="ti-star"></span></li>
@@ -454,18 +419,19 @@
                                     <li><span class="ti-star"></span></li>
                                     <li><span class="ti-star"></span></li>
                                 </ul>
-                                <div class="review">
-                                    <a href="#">4 customer reviews</a>
-                                </div>
                             </div>
                             <div class="price-box-3">
                                 <div class="s-price-box">
-                                    <span class="new-price">$17.20</span>
-                                    <span class="old-price">$45.00</span>
+                                    @if($product->promotion == null)
+                                    <span class="new-price">${{$product->price}}</span>
+                                    @else
+                                        <span class="old-price">${{$product->price}}</span>
+                                        <span class="new-price">${{$product->price - $product->price*$product->promotion/100}}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="quick-desc">
-                                Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
+                                {{$product->details}}
                             </div>
                             <div class="select__color">
                                 <h2>Select color</h2>
@@ -508,6 +474,7 @@
         </div><!-- .modal-dialog -->
     </div>
     <!-- END Modal -->
+        @endforeach
 </div>
 <!-- END QUICKVIEW PRODUCT -->
 <!-- Body main wrapper end -->

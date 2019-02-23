@@ -28,16 +28,6 @@
                     <div class="product__details__container">
                         <!-- Start Small images -->
                         <ul class="product__small__images" role="tablist">
-                            <li role="presentation" class="pot-small-img active">
-                                <a href="#img-tab-1" role="tab" data-toggle="tab">
-                                    <img src="{{asset('assets/img/products/product4.jpg')}}" alt="small-image">
-                                </a>
-                            </li>
-                            <li role="presentation" class="pot-small-img">
-                                <a href="#img-tab-2" role="tab" data-toggle="tab">
-                                    <img src="{{asset('assets/img/products/product3.jpg')}}" alt="small-image">
-                                </a>
-                            </li>
                             <li role="presentation" class="pot-small-img hidden-xs">
                                 <a href="#img-tab-3" role="tab" data-toggle="tab">
                                     <img src="{{asset('assets/img/products/product2.jpg')}}" alt="small-image">
@@ -62,7 +52,7 @@
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
                     <div class="htc__product__details__inner">
                         <div class="pro__detl__title">
-                            <h2>Black Clock</h2>
+                            <h2>{{$product->name}}</h2>
                         </div>
                         <div class="pro__dtl__rating">
                             <ul class="pro__rating">
@@ -78,8 +68,12 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod temf incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostr exercitation ullamco laboris nisi ut aliquip ex ea. </p>
                         </div>
                         <ul class="pro__dtl__prize">
-                            <li class="old__prize">$15.21</li>
-                            <li>$10.00</li>
+                            @if($product->promotion == null)
+                                <li class="new__prize">${{$product->price}}</li>
+                            @else
+                                <li class="old__prize">${{$product->price}}</li>
+                                <li class="new__prize">${{$product->price - $product->price*$product->promotion/100}}</li>
+                            @endif
                         </ul>
                         <div class="pro__dtl__color">
                             <h2 class="title__5">Choose Colour</h2>
@@ -115,7 +109,6 @@
                         <ul class="pro__dtl__btn">
                             <li class="buy__now__btn"><a href="#">buy now</a></li>
                             <li><a href="#"><span class="ti-heart"></span></a></li>
-                            <li><a href="#"><span class="ti-email"></span></a></li>
                         </ul>
                         <div class="pro__social__share">
                             <h2>Share :</h2>
@@ -155,7 +148,7 @@
                             <div class="product__description__wrap">
                                 <div class="product__desc">
                                     <h2 class="title__6">Details</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis noexercit ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id.</p>
+                                    <p>{{$product->details}}</p>
                                 </div>
                             </div>
                         </div>

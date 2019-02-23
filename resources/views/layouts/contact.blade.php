@@ -35,7 +35,7 @@
                                         <span class="ti-location-pin"></span>
                                     </div>
                                     <div class="contact__details">
-                                        <p>Location : <br> 77, Lorum epsum solarim natof.</p>
+                                        <p>Location : <br>{{$info->location}}</p>
                                     </div>
                                 </div>
                                 <!-- End Single Adress -->
@@ -47,7 +47,7 @@
                                         <span class="ti-mobile"></span>
                                     </div>
                                     <div class="contact__details">
-                                        <p> Phone : <br><a href="#">+012 000 111 222 </a></p>
+                                        <p> Phone : <br><a href="#">{{$info->phone_number}}</a></p>
                                     </div>
                                 </div>
                                 <!-- End Single Adress -->
@@ -57,7 +57,7 @@
                                         <span class="ti-email"></span>
                                     </div>
                                     <div class="contact__details">
-                                        <p> Mail :<br><a href="#">info@example.com</a></p>
+                                        <p> Mail :<br><a href="{{$info->mail_address}}">{{$info->mail_address}}</a></p>
                                     </div>
                                 </div>
                                 <!-- End Single Adress -->
