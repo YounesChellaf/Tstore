@@ -20,8 +20,7 @@
     <!-- Theme shortcodes/elements style -->
     <link rel="stylesheet" href={{asset('assets/css/shortcode/shortcodes.css')}}>
     <!-- Theme main style -->
-    <link rel="stylesheet" href={{asset('assets/css/style.css')}}>
-    <!-- Responsive css -->
+    <link rel="stylesheet" href={{asset('assets/css/style.css')}}><!-- Responsive css -->
     <link rel="stylesheet" href={{asset('assets/css/responsive.css')}}>
     <!-- User style -->
     <link rel="stylesheet" href={{asset('assets/css/custom.css')}}>

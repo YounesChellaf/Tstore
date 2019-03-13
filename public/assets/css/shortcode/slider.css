@@ -23,8 +23,7 @@
   width: 100%;
 }
 .slider-area > img {
-  height: 100vh;
-  width: 100%;
+  width: 60%;
 }
 .slider__full--screen {
   display: flex;
@@ -43,19 +42,11 @@
 }
 
 .slider__bg--1 {
-  background: rgba(0, 0, 0, 0) url("../../images/slider/bg/1.png") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("../../img/products/product1.jpg") no-repeat scroll center center / cover ;
 }
 .slider__bg--2 {
-  background: rgba(0, 0, 0, 0) url("../../images/slider/bg/2.jpg") no-repeat scroll center center / cover ;
+  background: rgba(0, 0, 0, 0) url("../../img/products/product1.jpg") no-repeat scroll center center / cover ;
 }
-
-.slider__bg--3 {
-  background: rgba(0, 0, 0, 0) url("../../images/slider/bg/3.jpg") no-repeat scroll center center / cover ;
-}
-.slider__bg--4 {
-  background: rgba(0, 0, 0, 0) url("../../images/slider/bg/4.jpg") no-repeat scroll center center / cover ;
-}
-
 .slider--two .slider__bg--2{
   background-attachment: fixed;
 }
@@ -73,7 +64,9 @@
   text-transform: capitalize;
 }
 .slide{
-  position: relative;
+  position: absolute;
+    width: 800px;
+
 }
 .owl-carousel.owl-theme {
   display: block;
@@ -234,7 +227,7 @@
 -----------------------------*/
 .slider--7 .slide {
   border-bottom: 1px solid #fff;
-  position: relative;
+  position: absolute;
 }        
 
 .slider--7 .slider__fornt__images{
@@ -279,6 +272,7 @@
   background: transparent none repeat scroll 0 0;
   height: 50px;
   left: 100px;
+  right: 100px;
   line-height: 41px;
   position: absolute;
   top: 50%;
@@ -289,23 +283,21 @@
 .slider__activation__wrap.owl-carousel .owl-nav div.owl-next {
   left: auto;
   right: 100px;
-  transition: 0.5s;
+  transition: 1s;
 }
 .slider__activation__wrap:hover .owl-nav div{
-  left: 20px;
+  left: 80px;
 }
 
 .slider__activation__wrap:hover .owl-nav div.owl-next{
-  right: 20px;
+  left : 900px;
 }
-
-
 .slider__activation__wrap.owl-carousel .owl-nav div i {
   color: #999;
   font-size: 83px;
 }
 .slider__activation__wrap{
-  position: relative;
+  position: absolute;
 }
 .owl-theme .owl-nav.disabled + .owl-dots {
   margin-top: 0;
@@ -316,14 +308,11 @@
 .owl-theme .owl-nav [class*="owl-"]:hover {
   background: transparent none repeat scroll 0 0;
 }
-
-
-
 .slide .slider__inner .slider__btn,
 .slide .slider__inner h4,
 .slide .slider__inner h3,
 .slide .slider__inner h1 {
-  opacity: 0;
+  opacity: 0.9;
   transform: translateY(40%);
 }
 .slider__fornt__images{

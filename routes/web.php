@@ -82,13 +82,12 @@ Route::get('/about', function () {
 });
 Route::get('/product-details/{id}','ProductController@product_details');
 Route::get('/category/{id}','ProductController@category_product');
-Route::get('/cart', function () {
-    return view('layouts.cart');
-});
+Route::get('/cart/{id}','CartController@AddProductList');
 Route::get('/checkout', function () {
     return view('layouts.checkout');
 });
 Route::get('/blog-details/{id}','BlogController@show');
+Route::post('/blog-details/{id}','BlogController@create');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -99,3 +98,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('auth/google', 'Auth\LoginController@redirectToProvider1');
+Route::get('auth/google/callback', 'Auth\LoginController@handleProviderCallback1');

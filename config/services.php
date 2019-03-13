@@ -40,9 +40,14 @@ return [
         ],
     ],
     'facebook' => [
-        'client_id' => env("FB_APP",'246429252953123'),
+        'client_id' => env('246429252953123'),
         'client_secret' => env('b7b4b2014e43b64ce94e058ab25075d0'),
         'redirect' => 'http://localhost:8000/auth/facebook/callback',
+    ],
+    'google' => [
+        'client_id' => env('178451361205-mo0u39mk3rrog9mlbkrn74ggds8mfpr3.apps.googleusercontent.com'),
+        'client_secret' => env('YeSBxbouhbsWtmkoW_sbIB7t'),
+        'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
 
 ];

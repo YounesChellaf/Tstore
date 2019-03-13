@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class LoginController extends Controller
@@ -51,7 +51,22 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        return "bravo" ;
+
+        // $user->token;
+    }
+    public function redirectToProvider1()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback1()
+    {
+        $user = Socialite::driver('google')->user();
 
         // $user->token;
     }

@@ -110,27 +110,29 @@
                             </div>
                             <!-- End Blog Comment Area -->
                             <!-- Start Reply Form -->
+                            @auth()
                             <div class="our-reply-form-area mt--20">
+                                <form id="reply-form" action="/blog-details/{{$blog->id}}" method="POST">
                                 <h2 class="section-title-2">LEAVE A REPLY</h2>
                                 <div class="reply-form-inner mt--40">
-                                    <div class="reply-form-box">
-                                        <div class="reply-form-box-inner">
-                                            <div class="rfb-single-input">
-                                                <input type="text" placeholder="Name*">
-                                            </div>
-                                            <div class="rfb-single-input">
-                                                <input type="email" placeholder="Email*">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="reply-form-box">
                                         <textarea name="message" placeholder="Message"></textarea>
                                     </div>
                                     <div class="blog__details__btn">
-                                        <a class="htc__btn btn--gray" href="#">submit</a>
+                                        <a class="htc__btn btn--gray" href="#" id="submit-reply">
+                                            submit
+                                        </a>
+                                        <script>
+                                            document.getElementById("submit-reply").onclick = function() {
+                                                document.getElementById("reply-form").submit();
+                                            }
+                                        </script>
                                     </div>
                                 </div>
+                                </form>
                             </div>
+                            @elseauth()
+                            @endauth
                             <!-- End Reply Form -->
                         </div>
                     </div>
@@ -142,9 +144,7 @@
                             <h2 class="section-title-2">CATEGORY</h2>
                             <ul class="categore-menu">
                                 @foreach(App\SuperCategory::all() as $super_category)
-                                    {{--@foreach(\App\Blog::all()->where('super_category_id',$super_category->id) as $nb_blog)--}}
-                                {{--<li><a href="#"><i class="zmdi zmdi-caret-right"></i>{{$super_category->name}}<span>{{$nb_blog}}</span></a></li>--}}
-                                   {{--@endforeach--}}
+                                      <li><a href=""><i class="zmdi zmdi-caret-right"></i>{{$super_category->name}}<span>{{$all_blog->where('super_category_id',$super_category->id)->count()}}</span></a></li>
                                 @endforeach
                             </ul>
                         </div>

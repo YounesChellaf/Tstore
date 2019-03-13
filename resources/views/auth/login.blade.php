@@ -60,9 +60,9 @@
 
                 <li><a class="bg--instagram" href="#"><i class="zmdi zmdi-instagram"></i></a></li>
 
-                <li><a class="bg--facebook" href="/auth/facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                <li><a class="bg--facebook" href="auth/facebook"><i class="zmdi zmdi-facebook"></i></a></li>
 
-                <li><a class="bg--googleplus" href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
+                <li><a class="bg--googleplus" href="auth/google"><i class="zmdi zmdi-google-plus"></i></a></li>
             </ul>
         </div>
 </div>

@@ -4,6 +4,8 @@
     <div class="container">
         <div class="row">
             <!-- Start Left Feature -->
+            <div class="col-md-9 col-lg-9 col-sm-8 col-xs-12 float-left-style">
+            </div>
             <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12 float-right-style">
                 <div class="categories-menu mrg-xs">
                     <div class="category-heading">
@@ -119,7 +121,7 @@
                                     <div class="product__hover__info">
                                         <ul class="product__action">
                                             <li><a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                            <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
+                                            <li><a title="Add TO Cart" href="/cart/{{$product->id}}"><span class="ti-shopping-cart"></span></a></li>
                                             <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
                                         </ul>
                                     </div>
