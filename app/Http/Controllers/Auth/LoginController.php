@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
-
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -38,9 +40,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function redirectToProvider()
+    public function redirectToProvider($service)
     {
-        return Socialite::driver('facebook')->redirect();
+
+        return Socialite::driver($service)->redirect();
     }
 
     /**
@@ -48,26 +51,34 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($service)
     {
-        $user = Socialite::driver('facebook')->user();
-
-        // $user->token;
+        $user = Socialite::driver($service)->user();
+        $userAuth = $this->findOrCreateUser($user);
+        Auth::login($userAuth);
+        return redirect('/');
     }
-    public function redirectToProvider1()
+
+    public function findOrCreateUser($user)
     {
-        return Socialite::driver('google')->redirect();
+        $authUser = User::where('email',$user->getEmail())->first();
+        if ($authUser) {
+            return $authUser;
+        }
+        return User::create([
+            'email' => $user->getEmail(),
+            'password' => $user->token,
+            'name' =>$user->getName(),
+            'avatar' =>$user->getAvatar()
+        ]);
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Logout function.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback1()
-    {
-        $user = Socialite::driver('google')->user();
-
-        // $user->token;
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
     }
 }

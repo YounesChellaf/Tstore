@@ -40,14 +40,19 @@ return [
         ],
     ],
     'facebook' => [
-        'client_id' => env('246429252953123'),
-        'client_secret' => env('b7b4b2014e43b64ce94e058ab25075d0'),
+        'client_id' => env('APP_ID','632278577225038'),
+        'client_secret' => env('APP_SECRET','954deb6ad5f83a900d6b2e9c072afdda'),
         'redirect' => 'http://localhost:8000/auth/facebook/callback',
     ],
     'google' => [
-        'client_id' => env('178451361205-mo0u39mk3rrog9mlbkrn74ggds8mfpr3.apps.googleusercontent.com'),
-        'client_secret' => env('YeSBxbouhbsWtmkoW_sbIB7t'),
+        'client_id' => env('APP_ID','178451361205-k9deteglvkgi3gtriun3pthjcnhmeq6t.apps.googleusercontent.com'),
+        'client_secret' => env('APP_SECRET','VMV-RewhpzgYWCW8VrR_PW78'),
         'redirect' => 'http://localhost:8000/auth/google/callback',
+    ],
+    'instagram' => [
+        'client_id' => env('APP_ID',' 2400334690594fdd91a639580b8c59ee'),
+        'client_secret' => env('APP_SECRET',' 7068c52f94c6407fb4ea3a6fbc62efa6'),
+        'redirect' => 'http://localhost:8000/auth/instagram/callback',
     ],
 
 ];

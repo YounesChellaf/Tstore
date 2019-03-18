@@ -80,6 +80,7 @@ Route::get('/wishlist', function () {
 Route::get('/about', function () {
     return view('layouts.about');
 });
+Route::get('/wishlist/{id}','CartController@AddWishlist');
 Route::get('/product-details/{id}','ProductController@product_details');
 Route::get('/category/{id}','ProductController@category_product');
 Route::get('/cart/{id}','CartController@AddProductList');
@@ -88,15 +89,15 @@ Route::get('/checkout', function () {
 });
 Route::get('/blog-details/{id}','BlogController@show');
 Route::post('/blog-details/{id}','BlogController@create');
+Route::post('/message','HomeController@SendMessage');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
-Route::get('auth/google', 'Auth\LoginController@redirectToProvider1');
-Route::get('auth/google/callback', 'Auth\LoginController@handleProviderCallback1');
+Route::get('auth/{service}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{service}/callback', 'Auth\LoginController@handleProviderCallback');

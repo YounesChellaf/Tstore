@@ -64,8 +64,9 @@
   text-transform: capitalize;
 }
 .slide{
-  position: absolute;
-    width: 800px;
+  position: relative;
+    width: 900px;
+    height: 490px;
 
 }
 .owl-carousel.owl-theme {

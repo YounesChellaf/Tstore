@@ -76,6 +76,7 @@
                                     </tr>
                                     </tfoot>
                                 </table>
+                                <span>{{cookie()->getValue()}}</span>
                             </div>
                         </form>
                     </div>

@@ -57,54 +57,89 @@
                             <!-- Start Blog Comment Area -->
                             <div class="our-blog-comment mt--20">
                                 <div class="blog-comment-inner">
-                                    <h2 class="section-title-2">COMMENTS (03)</h2>
+                                    <h2 class="section-title-2">COMMENTS</h2>
                                     <!-- Start Single Comment -->
+                                    @foreach(App\Comment::all()->where('blog_id',$blog->id) as $comment )
+                                        @foreach(App\User::all()->where('id',$comment->author_id) as $author)
                                     <div class="single-blog-comment">
                                         <div class="blog-comment-thumb">
-                                            <img src="images/comment/1.jpg" alt="comment images">
+                                            @if($author->role_id==1)
+                                            <img src="{{asset('storage/users/default.png')}}" alt="comment images">
+                                            @else
+                                            <img src="{{$author->avatar}}" alt="comment images" style="border-radius: 50%">
+                                            @endif
                                         </div>
                                         <div class="blog-comment-details">
                                             <div class="comment-title-date">
-                                                <h2><a href="#">Martin Payet</a></h2>
-                                                <div class="reply">
-                                                    <p>14 Sep 2017 / <a href="#">REPLY</a></p>
+                                                <h2><a href="#">{{$author->name}} </a> </h2>
+                                                @endforeach
+                                                <div class="reply" >
+                                                    <p>{{$comment->created_at->format('d M Y')}} / <button type="button" id="btn1">REPLY</button></p>
                                                 </div>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi ut labore et dolo magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                            <p>{{$comment->content}}</p>
                                         </div>
                                     </div>
+                                            @foreach(App\Reply::all()->where('comment_id',$comment->id) as $reply)
+                                                @if($reply->count()>0)
+                                                    @foreach(App\User::all()->where('id',$reply->author_id) as $author)
+                                                <div class="single-blog-comment comment-reply">
+                                                    <div class="blog-comment-thumb">
+                                                        @if($author->role_id==1)
+                                                            <img src="{{asset('storage/users/default.png')}}" alt="comment images">
+                                                        @else
+                                                            <img src="{{$author->avatar}}" alt="comment images" style="border-radius: 50%">
+                                                        @endif
+                                                    </div>
+                                                    <div class="blog-comment-details">
+                                                        <div class="comment-title-date">
+                                                            <h2><a href="#">{{$author->name}}</a></h2>
+                                                            @endforeach
+                                                            <div class="reply">
+                                                                <p>{{$reply->created_at->format('d M Y')}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <p>{{$reply->content}}</p>
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            @endforeach
+                                             @auth()
+                                              <script>
+                                               $(document).ready(function(){
+                                               $("#bnt1").click(function(){
+                                                $("#2").toggle();
+                                               });
+                                               });
+                                              </script>
+                                             <div class="row">
+                                                 <div id="2" class="our-reply-form-area mt--20 col-md-8" style="margin-left:10%; display: none">
+                                                     <form id="reply-form" action="/blog-details/{{$blog->id}}" method="POST">
+                                                         {{ csrf_field() }}
+                                                         <input type="hidden"  name="user" value="{{Auth::user()->id}}" />
+                                                         <div class="reply-form-inner mt--40">
+                                                             <div class="reply-form-box">
+                                                                 <textarea name="message" placeholder="Message"></textarea>
+                                                             </div>
+                                                             <div class="blog__details__btn">
+                                                                 <a class="htc__btn btn--gray" href="#" id="submit-reply">
+                                                                     submit
+                                                                 </a>
+                                                                 <script>
+                                                                     document.getElementById("submit-reply").onclick = function() {
+                                                                         document.getElementById("reply-form").submit();
+                                                                     }
+                                                                 </script>
+                                                             </div>
+                                                         </div>
+                                                     </form>
+                                                 </div>
+                                             </div>
+                                             @elseauth()
+                                             @endauth
+                                    @endforeach
                                     <!-- End Single Comment -->
                                     <!-- Start Single Comment -->
-                                    <div class="single-blog-comment comment-reply">
-                                        <div class="blog-comment-thumb">
-                                            <img src="images/comment/2.jpg" alt="comment images">
-                                        </div>
-                                        <div class="blog-comment-details">
-                                            <div class="comment-title-date">
-                                                <h2><a href="#">Martin Payet</a></h2>
-                                                <div class="reply">
-                                                    <p>14 Sep 2017 / <a href="#">REPLY</a></p>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi ut labore et dolo magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                        </div>
-                                    </div>
-                                    <!-- End Single Comment -->
-                                    <!-- Start Single Comment -->
-                                    <div class="single-blog-comment">
-                                        <div class="blog-comment-thumb">
-                                            <img src="images/comment/3.jpg" alt="comment images">
-                                        </div>
-                                        <div class="blog-comment-details">
-                                            <div class="comment-title-date">
-                                                <h2><a href="#">Martin Payet</a></h2>
-                                                <div class="reply">
-                                                    <p>14 Sep 2017 / <a href="#">REPLY</a></p>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidi ut labore et dolo magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                        </div>
-                                    </div>
                                     <!-- End Single Comment -->
                                 </div>
                             </div>
@@ -113,7 +148,9 @@
                             @auth()
                             <div class="our-reply-form-area mt--20">
                                 <form id="reply-form" action="/blog-details/{{$blog->id}}" method="POST">
-                                <h2 class="section-title-2">LEAVE A REPLY</h2>
+                                    {{ csrf_field() }}
+                                    <input type="hidden"  name="user" value="{{Auth::user()->id}}" />
+                                <h2 class="section-title-2">LEAVE A COMMENT</h2>
                                 <div class="reply-form-inner mt--40">
                                     <div class="reply-form-box">
                                         <textarea name="message" placeholder="Message"></textarea>

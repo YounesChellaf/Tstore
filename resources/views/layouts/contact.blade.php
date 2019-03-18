@@ -67,10 +67,10 @@
                             <div class="contact-title">
                                 <h2 class="contact__title">Get In Touch</h2>
                             </div>
-                            <form id="contact-form" action="mail.php" method="post">
+                            <form id="contact-form" action="/message" method="POST">
                                 <div class="single-contact-form">
                                     <div class="contact-box name">
-                                        <input type="text" name="name" placeholder="Your Nme*">
+                                        <input type="text" name="name" placeholder="Your Name*">
                                         <input type="email" name="email" placeholder="Mail*">
                                     </div>
                                 </div>
