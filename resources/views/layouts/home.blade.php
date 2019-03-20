@@ -16,10 +16,10 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="{{asset('assets/img/products/product1.jpg')}}" width="500">
+                            <img src="{{asset('assets/img/landing1.jpeg')}}"  style="max-width: 100%; height: auto" >
                         </div>
                         <div class="item">
-                            <img src="{{asset('assets/img/products/product2.jpg')}}" width="500">
+                            <img src="{{asset('assets/img/landing2.jpeg')}}" style="max-width: 100%; height: auto"  >
                         </div>
                     </div>
 

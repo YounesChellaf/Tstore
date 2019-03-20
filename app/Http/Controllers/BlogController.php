@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Comment;
+use App\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -24,6 +25,19 @@ class BlogController extends Controller
             'author_id' => $user_id
         ]);
         $blog = Blog::find($id);
+        $all_blog = Blog::all();
+        return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
+    }
+    public function reply(Request $request,$id){
+        $message = $request->input('message');
+        $user_id = $request->input('user');
+        $blog_id = $request->input('blog_id');
+        Reply::create([
+            'content' => $message,
+            'comment_id'=> $id,
+            'author_id' => $user_id
+        ]);
+        $blog = Blog::find($blog_id);
         $all_blog = Blog::all();
         return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
     }

@@ -39,9 +39,9 @@
                             <!--End Blog Thumb -->
                             <h2>{{$blog->title}}</h2>
                             <div class="blog-admin-and-comment">
-                                <p>BY : <a href="#">ADMIN</a></p>
-                                <p class="separator">|</p>
-                                <p>3 COMMENTS</p>
+                                @foreach(App\User::all()->where('id',$blog->author_id) as $author)
+                                <p>BY : <a href="#">{{$author->name}}</a></p>
+                                @endforeach
                             </div>
                             <!-- Start Blog Pra -->
                             <div class="blog-details-pra">
@@ -74,7 +74,7 @@
                                                 <h2><a href="#">{{$author->name}} </a> </h2>
                                                 @endforeach
                                                 <div class="reply" >
-                                                    <p>{{$comment->created_at->format('d M Y')}} / <button type="button" id="btn1">REPLY</button></p>
+                                                    <p>{{$comment->created_at->format('d M Y')}} / <a type="button" id="{{$comment->id}}">REPLY</a></p>
                                                 </div>
                                             </div>
                                             <p>{{$comment->content}}</p>
@@ -106,28 +106,32 @@
                                             @endforeach
                                              @auth()
                                               <script>
-                                               $(document).ready(function(){
-                                               $("#bnt1").click(function(){
-                                                $("#2").toggle();
-                                               });
-                                               });
+                                                      document.getElementById('{{$comment->id}}').onclick = function () {
+                                                          let style = document.getElementById("a{{$comment->id}}").style.display;
+                                                          if (style == "none"){
+                                                              document.getElementById("a{{$comment->id}}").style.display = "initial";
+                                                          }
+                                                          else
+                                                          document.getElementById("a{{$comment->id}}").style.display = "none";
+                                                  }
                                               </script>
                                              <div class="row">
-                                                 <div id="2" class="our-reply-form-area mt--20 col-md-8" style="margin-left:10%; display: none">
-                                                     <form id="reply-form" action="/blog-details/{{$blog->id}}" method="POST">
+                                                 <div id="a{{$comment->id}}" class="our-reply-form-area mt--20 col-md-8" style="margin-left:10%; display: none">
+                                                     <form id="reply{{$comment->id}}" action="/blog-details/reply/{{$comment->id}}" method="POST">
                                                          {{ csrf_field() }}
                                                          <input type="hidden"  name="user" value="{{Auth::user()->id}}" />
+                                                         <input type="hidden"  name="blog_id" value="{{$blog->id}}" />
                                                          <div class="reply-form-inner mt--40">
                                                              <div class="reply-form-box">
                                                                  <textarea name="message" placeholder="Message"></textarea>
                                                              </div>
                                                              <div class="blog__details__btn">
-                                                                 <a class="htc__btn btn--gray" href="#" id="submit-reply">
+                                                                 <a class="htc__btn btn--gray" href="#" id="submit{{$comment->id}}">
                                                                      submit
                                                                  </a>
                                                                  <script>
-                                                                     document.getElementById("submit-reply").onclick = function() {
-                                                                         document.getElementById("reply-form").submit();
+                                                                     document.getElementById("submit{{$comment->id}}").onclick = function() {
+                                                                         document.getElementById("reply{{$comment->id}}").submit();
                                                                      }
                                                                  </script>
                                                              </div>

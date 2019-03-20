@@ -89,6 +89,7 @@ Route::get('/checkout', function () {
 });
 Route::get('/blog-details/{id}','BlogController@show');
 Route::post('/blog-details/{id}','BlogController@create');
+Route::post('/blog-details/reply/{id}','BlogController@reply');
 Route::post('/message','HomeController@SendMessage');
 
 Route::group(['prefix' => 'admin'], function () {
