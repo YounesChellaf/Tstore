@@ -27,7 +27,7 @@
     <!-- Modernizr JS -->
     <script src={{asset('assets/js/vendor/modernizr-2.8.3.min.js')}}></script>
 </head>
-<body>
+<body >
 <!-- Body main wrapper start -->
 <div class="wrapper fixed__footer">
     <!-- Start Header Style -->

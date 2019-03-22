@@ -14,6 +14,8 @@ class CartController extends Controller
         session(['product'=>$product]);
     }
     public function AddWishlist($id,Request $request){
-
+        $product = Product::find($id);
+        $request->cookie('name', 'fdsfdsfsdf', 100);
+        dd($request->cookie('name')) ;
      }
 }
