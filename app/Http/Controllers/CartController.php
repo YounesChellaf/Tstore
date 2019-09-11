@@ -9,13 +9,17 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    public function WishlistIndex(){
+        return view('layouts.wishlist');
+    }
     public function AddProductList($id){
         $product = Product::find($id);
         session(['product'=>$product]);
     }
     public function AddWishlist($id,Request $request){
         $product = Product::find($id);
-        $request->cookie('name', 'fdsfdsfsdf', 100);
+        $request->cookie('name', 'your cookie', 100);
         dd($request->cookie('name')) ;
      }
 }

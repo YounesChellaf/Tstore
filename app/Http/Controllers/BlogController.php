@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Comment;
+use App\Http\Requests\CommentRequest;
+use App\Http\Requests\ReplyRequest;
 use App\Reply;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class BlogController extends Controller
 {
@@ -15,30 +15,24 @@ class BlogController extends Controller
         $all_blog = Blog::all();
         return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
     }
-    public function create(Request $request,$id){
-        $message = $request->input('message');
-        $user_id = $request->input('user');
-
-        Comment::create([
-           'content' => $message,
-            'blog_id'=> $id,
-            'author_id' => $user_id
-        ]);
-        $blog = Blog::find($id);
-        $all_blog = Blog::all();
-        return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
+    public function create(CommentRequest $request,$id){
+        if($request->post()){
+            $validated = $request->validated();
+            Comment::new($request,$id);
+            $blog = Blog::find($id);
+            $all_blog = Blog::all();
+            return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
+        }
     }
-    public function reply(Request $request,$id){
-        $message = $request->input('message');
-        $user_id = $request->input('user');
-        $blog_id = $request->input('blog_id');
-        Reply::create([
-            'content' => $message,
-            'comment_id'=> $id,
-            'author_id' => $user_id
-        ]);
-        $blog = Blog::find($blog_id);
-        $all_blog = Blog::all();
-        return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
+
+    public function reply(ReplyRequest $request,$id){
+        if ($request->post()){
+            $validated = $request->validated();
+            Reply::new($request,$id);
+            $blog = Blog::find($request->blog_id);
+            $all_blog = Blog::all();
+            return view('layouts.blog-details')->with('blog',$blog)->with('all_blog',$all_blog);
+        }
+
     }
 }

@@ -11,94 +11,36 @@
 |
 */
 Route::group(['prefix' => '/'], function () {
-    Route::get('', function () {
-        $Product= App\Product::orderBy('created_at','desc')->take(12)->get();
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('all-products', function () {
-        $Product= App\Product::all();
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('new-products', function () {
-        $Product= App\Product::all()->where('state','option1');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('used-products', function () {
-        $Product= App\Product::all()->where('state','option2');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('selling-products', function () {
-        $Product= App\Product::all()->where('state','option3');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('exchange-products', function () {
-        $Product= App\Product::all()->where('state','option4');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('express-delivering', function () {
-        $Product= App\Product::all()->where('delivery_method','option1');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('normal-delivering', function () {
-        $Product= App\Product::all()->where('delivery_method','option2');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('cash-payment', function () {
-        $Product= App\Product::all()->where('payment_method','option1');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('e-payment', function () {
-        $Product= App\Product::all()->where('payment_method','option2');
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('filter-price-one', function () {
-        $Product= App\Product::all()->where('price','<',50);
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('filter-price-two', function () {
-        $Product= App\Product::all()->where('price','>=',50)->where('price','<',200);
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('filter-price-three', function () {
-        $Product= App\Product::all()->where('price','>=',200)->where('price','<',500);
-        return view('layouts.home')->with('Product',$Product);
-    });
-    Route::get('filter-price-four', function () {
-        $Product= App\Product::all()->where('price','>=',500);
-        return view('layouts.home')->with('Product',$Product);
-    });
-
-});
-Route::get('/contact', function () {
-    $info = App\Info::find(1);
-    return view('layouts.contact')->with('info',$info);
+    Route::get('','ProductController@index');
+    Route::get('all-products','ProductController@getAllProducts');
+    Route::get('{type}-products','ProductController@getProducts');
+    Route::get('{type}-delivering','ProductController@getDeliveringProducts');
+    Route::get('{type}-payment','PaymentController@PaymentView');
+    Route::get('filter-price-{type}','PriceController@PriceFilterView');
 });
 
-Route::get('/wishlist', function () {
-    return view('layouts.wishlist');
+Route::group(['prefix' => '/blog-details/'], function () {
+    Route::get('{id}','BlogController@show');
+    Route::post('{id}','BlogController@create');
+    Route::post('reply/{id}','BlogController@reply');
 });
-Route::get('/about', function () {
-    return view('layouts.about');
-});
-Route::get('/wishlist/{id}','CartController@AddWishlist');
-Route::get('/product-details/{id}','ProductController@product_details');
-Route::get('/category/{id}','ProductController@category_product');
-Route::get('/cart/{id}','CartController@AddProductList');
-Route::get('/checkout', function () {
-    return view('layouts.checkout');
-});
-Route::get('/blog-details/{id}','BlogController@show');
-Route::post('/blog-details/{id}','BlogController@create');
-Route::post('/blog-details/reply/{id}','BlogController@reply');
-Route::post('/message','HomeController@SendMessage');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::get('/checkout','HomeController@Checkout');
+Route::get('/contact','HomeController@Contact');
+Route::get('/about','HomeController@About');
+Route::post('/message','HomeController@SendMessage');
+Route::get('/wishlist','CartController@WishlistIndex');
+Route::get('/wishlist/{id}','CartController@AddWishlist');
+Route::get('/product-details/{id}','ProductController@product_details');
+Route::get('/category/{id}','ProductController@category_product');
+Route::get('/cart/{id}','CartController@AddProductList');
+
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/{service}/callback', 'Auth\LoginController@handleProviderCallback');
