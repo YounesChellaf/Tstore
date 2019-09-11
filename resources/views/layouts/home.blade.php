@@ -15,12 +15,16 @@
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
+                        <div class="item">
+                            <img src="{{asset('assets/img/landing2.jpeg')}}" style="width: 1000px; height: 490px"  >
+                        </div>
                         <div class="item active">
-                            <img src="{{asset('assets/img/landing1.jpeg')}}"  style="max-width: 100%; height: auto" >
+                            <img src="{{asset('assets/img/products/product1.jpg')}}"  style="width: 1000px; height: 490px" >
                         </div>
                         <div class="item">
-                            <img src="{{asset('assets/img/landing2.jpeg')}}" style="max-width: 100%; height: auto"  >
+                            <img src="{{asset('assets/img/landing1.jpeg')}}" style="width: 1000px; height: 490px"  >
                         </div>
+
                     </div>
 
                     <!-- Controls -->
